@@ -44,25 +44,16 @@ public class BuscaCEP implements Comparator<Endereco> {
           } else if(Long.parseLong(e.getCep()) < Long.parseLong(cep)) {
             	inicio = meio + 1;
             	meio = (inicio + fim)/2;
-          } else if (Long.parseLong(e.getCep()) > Long.parseLong(cep)) {
+          } else {
             	fim = meio - 1;
             	meio = (inicio + fim)/2;
           }
-          if (fim.equals(meio)) {
+          if (fim < inicio) {
             	System.out.println("CEP não encontrado!");
             	break;
           }
-            
         }
-//		while (!found) {
-//			i++;
-//			Endereco e = new Endereco();
-//			e.leEndereco(f);
-//			if (Long.parseLong(e.getCep()) == Long.parseLong(cep)) {
-//				System.out.println(e.toString());
-//				found = true;
-//			}
-//		}
+        
 		System.out.println("Número de comparações: " + i);
 		f.close();
 
