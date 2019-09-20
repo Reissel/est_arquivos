@@ -19,11 +19,11 @@ public class IntercalaMerge {
 			try {
 				
 				ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
-				int j = 0;
+				
 				for(int i = 0; i < qtd/2; i++) {
 				
-					RandomAccessFile entrada1 = new RandomAccessFile(arquivo+(first_index+i+j)+".dat", "r");
-					RandomAccessFile entrada2 = new RandomAccessFile(arquivo+(first_index+i+j+1)+".dat", "r");
+					RandomAccessFile entrada1 = new RandomAccessFile(arquivo+(first_index+i*2)+".dat", "r");
+					RandomAccessFile entrada2 = new RandomAccessFile(arquivo+(first_index+(i*2)+1)+".dat", "r");
 					
 					Endereco e1 = new Endereco();
 					e1.leEndereco(entrada1);
@@ -83,13 +83,13 @@ public class IntercalaMerge {
 				    
 				    
 				    entrada1.close();
-				    File file1 = new File(arquivo+(first_index+i+j)+".dat");
+				    File file1 = new File(arquivo+(first_index+i*2)+".dat");
 				    file1.delete();
 				    entrada2.close();
-				    File file2 = new File(arquivo+(first_index+i+j+1)+".dat");
+				    File file2 = new File(arquivo+(first_index+i*2+1)+".dat");
 				    file2.delete();
 				    
-				    RandomAccessFile saida = new RandomAccessFile(arquivo+(first_index+qtd+j)+".dat", "rw");
+				    RandomAccessFile saida = new RandomAccessFile(arquivo+(first_index+qtd+i)+".dat", "rw");
 		
 			        for(Endereco e: enderecos)
 			        {
@@ -97,7 +97,6 @@ public class IntercalaMerge {
 			        }
 			        enderecos.clear();
 			        saida.close();
-			        j++;
 			        
 				}
 				
