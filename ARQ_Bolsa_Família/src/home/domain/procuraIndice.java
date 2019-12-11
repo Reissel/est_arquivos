@@ -39,18 +39,17 @@ public class procuraIndice {
             int p = (int) ((hash.hashCode() &0xfffffff)%hashsize);
 
             ElementoIndice registro = new ElementoIndice();
-            //Lê registro
+            //LÃª registro
             f2.seek(p*19L);
             //Passa para um registro
             registro.leElementoIndice(f2);
-            //Volta para a posicao anterior a leitura do registro
-            f2.seek(p*19L);
-            //Verifica se o registro esta vazio
-            
+            //Verifica se o registro existe no arquivo de indices
             if(registro.nis.equals(e.nis)) {
             	e.escreve(f3);
             	countInter++;
             } else if(registro.ponteiro != 0) {
+		//Se nao existe mas o hash bate e o registro encontrado tem valor no ponteiro,
+		//busca todos os registros tratados pela colisao externa
             	long aux = registro.ponteiro;
             	while(aux != 0) {
             		f2.seek(aux);
