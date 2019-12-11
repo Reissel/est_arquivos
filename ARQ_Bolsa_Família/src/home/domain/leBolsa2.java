@@ -14,7 +14,7 @@ public class leBolsa2
         String linha;
         String colunas[];
         RandomAccessFile f = new RandomAccessFile("files/201712_BolsaFamilia_Pagamentos.csv", "r");
-        
+        //Descomente para a criacao do arquivo de indice vazio
 //        RandomAccessFile f2 = new RandomAccessFile("files/bolsa.ind", "rw");
 //        
 //        for(int i = 0; i < hashsize; i++) {
@@ -56,9 +56,9 @@ public class leBolsa2
             int p = (int) ((hash.hashCode() &0xfffffff)%hashsize);
 
             ElementoIndice registro = new ElementoIndice();
-            //Lê registro
+            //LÃª registro
             fIndice.seek(p*19L);
-            //Passa para um registro
+            //Passa para um objeto registro
             registro.leElementoIndice(fIndice);
             //Volta para a posicao anterior a leitura do registro
             fIndice.seek(p*19L);
